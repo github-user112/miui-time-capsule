@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body,iframe{margin:0;width:100%;height:100%;border:0;overflow:hidden}</style></head><body>
+<iframe id="f" src="index.html"></iframe>
+<script>
+var mode = new URLSearchParams(location.search).get('mode') || '';
+document.getElementById('f').addEventListener('load', async function () {
+  var d = this.contentDocument;
+  var w = this.contentWindow;
+  var click = function (s, root) { var e = (root || d).querySelector(s); if (e) e.click(); return e; };
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var out = {};
+
+  if (mode === 'timeline') { click('#btn-start'); }
+  else if (mode === 'era') { click('#btn-start'); setTimeout(function () { var t = d.querySelector('#eraTrack'), c = d.querySelectorAll('.era-card')[5]; t.style.scrollBehavior = 'auto'; t.scrollLeft = c.offsetLeft - t.offsetLeft - (t.clientWidth - c.clientWidth) / 2; }, 200); }
+  else if (mode === 'quiz') { click('#btn-quiz-skip'); }
+  else if (mode === 'result') {
+    click('#btn-quiz-skip');
+    setTimeout(function () {
+      [0, 1, 2].forEach(function (qi) { click('.quiz-q:nth-of-type(' + (qi + 1) + ') .quiz-opt:nth-of-type(' + (qi + 1) + ')'); });
+      click('#btn-quiz-submit');
+    }, 200);
+  }
+  else if (mode === 'verify') {
+    click('#btn-start');
+    await wait(150);
+    var cards = d.querySelectorAll('.era-card');
+    click('.dial-key', cards[0]); click('.dial-key:nth-of-type(2)', cards[0]);
+    out.dial = d.querySelector('#dialNum') ? d.querySelector('#dialNum').textContent : d.querySelector('.dial-screen span').textContent;
+    click('.cloud-btn', cards[1]); await wait(1300);
+    out.cloud = d.querySelector('.cloud-msg', cards[1]).textContent;
+    click('.icon-toggle button:nth-of-type(2)', cards[2]);
+    out.icons = d.querySelector('.icon-grid', cards[2]).classList.contains('is-flat');
+    var range = d.querySelector('.split-range', cards[3]); range.value = 80; range.dispatchEvent(new w.Event('input', { bubbles: true }));
+    out.split = d.querySelector('.split-side.b', cards[3]).style.clipPath;
+    click('.mic', cards[4]); await wait(800);
+    out.assistant = d.querySelector('.assistant-reply', cards[4]).textContent;
+    click('.wp-btns button:nth-of-type(2)', cards[5]);
+    out.wallpaper = d.querySelector('.wp-label', cards[5]).textContent;
+    click('.switch', cards[6]);
+    out.privacy = d.querySelector('.privacy-count', cards[6]).textContent;
+    click('.connect-node.n1', cards[7]); click('.connect-node.n2', cards[7]);
+    out.connected = d.querySelector('.connect-msg', cards[7]).textContent;
+    var ta = d.querySelector('.future-input', cards[9]); ta.value = '测试胶囊';
+    click('.f-save', cards[9]);
+    out.future = d.querySelector('.future-msg', cards[9]).textContent;
+    out.cards = cards.length;
+    click('#btn-quiz-skip');
+    [0, 1, 2].forEach(function (qi) {
+      var q = d.querySelectorAll('.quiz-q')[qi];
+      q.querySelectorAll('.quiz-opt')[0].click();
+    });
+    out.submitEnabled = !d.querySelector('#btn-quiz-submit').disabled;
+    click('#btn-quiz-submit');
+    out.badge = d.querySelector('#resultBadge').textContent;
+    out.canvas = d.querySelector('#resultCanvas').width;
+    document.body.insertAdjacentHTML('beforeend', '<pre id="dbg">' + JSON.stringify(out) + '</pre>');
+  }
+});
+</script></body></html>

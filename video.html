@@ -1,0 +1,200 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:#0b0d12;color:#fff;font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif}
+.bg{position:absolute;inset:0;background:radial-gradient(750px 520px at 80% 10%,rgba(255,122,47,.3),transparent 66%),radial-gradient(600px 600px at 5% 90%,rgba(80,110,255,.12),transparent 65%)}
+.grid{position:absolute;inset:0;opacity:.28;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 25%,transparent 82%);mask-image:radial-gradient(ellipse at 50% 45%,#000 25%,transparent 82%)}
+.scene{position:absolute;inset:0;padding:92px 82px;opacity:0;will-change:opacity,transform}
+.kick{font-size:25px;letter-spacing:.18em;color:#ffb15c}
+.h1{font-size:132px;line-height:1.02;font-weight:900;letter-spacing:-.05em;margin:42px 0 0}
+.h1 span{background:linear-gradient(100deg,#ffd7a8,#ff8a35 52%,#ff5926);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:36px;line-height:1.7;color:#c8cdd6;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:18px;margin-top:54px;padding:26px 40px;border-radius:22px;background:linear-gradient(135deg,#ffc078,#ff6a17);color:#1a0d03;font-size:34px;font-weight:800}
+.note{position:absolute;left:82px;bottom:88px;font-size:24px;color:#7d8491}
+.note b{color:#ff8a3d}
+.line{height:6px;width:0;border-radius:99px;background:linear-gradient(90deg,#ff8a3d,#ffd7a8)}
+.phone{position:absolute;right:70px;bottom:120px;width:350px;height:600px;border-radius:60px;padding:16px;background:linear-gradient(150deg,#4a4f5c,#101218 45%,#333846);box-shadow:0 40px 90px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,255,255,.12);transform:rotate(-5deg)}
+.pscr{border-radius:46px;height:100%;padding:48px 22px;background:radial-gradient(120% 80% at 20% 0%,rgba(255,140,60,.4),transparent 62%),linear-gradient(160deg,#1b1f29,#0d1016)}
+.pstat{display:flex;justify-content:space-between;font-size:16px;color:#cfd3dc;margin-bottom:58px}
+.pico{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 12px}
+.pico i{aspect-ratio:1;border-radius:22px;box-shadow:inset 0 2px 4px rgba(255,255,255,.35),0 8px 16px rgba(0,0,0,.3)}
+.pico i:nth-child(1){background:linear-gradient(145deg,#68d388,#1c9b52)}.pico i:nth-child(2){background:linear-gradient(145deg,#7fd0ff,#2688d8)}.pico i:nth-child(3){background:linear-gradient(145deg,#ffd27a,#e58f21)}.pico i:nth-child(4){background:linear-gradient(145deg,#c3c9d6,#7b8496)}
+.pico i:nth-child(5){background:linear-gradient(145deg,#ffad7a,#d1521d)}.pico i:nth-child(6){background:linear-gradient(145deg,#8ec9ff,#3f6fd1)}.pico i:nth-child(7){background:linear-gradient(145deg,#4d5565,#1a1e28)}.pico i:nth-child(8){background:linear-gradient(145deg,#ff9d9d,#cb4b4b)}
+
+.hd{display:flex;align-items:flex-end;justify-content:space-between}
+.h2{font-size:64px;font-weight:900;letter-spacing:-.03em;margin:12px 0 0}
+.tag{font-size:24px;color:#ffb15c;border:1px solid rgba(255,177,92,.35);border-radius:999px;padding:12px 22px}
+.vcard{width:100%;height:1010px;margin-top:44px;border:1px solid rgba(255,255,255,.12);border-radius:48px;padding:52px;background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02));position:relative;overflow:hidden}
+.vyear{font-size:110px;font-weight:900;line-height:1;color:#ff8a3d;letter-spacing:-.05em}
+.vver{position:absolute;right:52px;top:62px;font-size:24px;border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:10px 20px;color:#d7dbe3}
+.vtitle{font-size:48px;font-weight:800;margin:26px 0 8px}
+.vtag{font-size:28px;color:#ff8a3d;margin:0 0 34px}
+.widget{border:1px solid rgba(255,255,255,.1);border-radius:30px;background:rgba(0,0,0,.25);padding:34px;height:520px}
+.wname{font-size:24px;color:#e8ebf1;font-weight:700}
+.whint{font-size:21px;color:#7d8492;margin:10px 0 26px}
+.dialnum{height:74px;border-radius:18px;background:rgba(0,0,0,.5);display:flex;align-items:center;padding:0 26px;font-size:40px;letter-spacing:.16em;color:#9fe0a8}
+.dialpad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.dialpad span{height:62px;border-radius:14px;border:1px solid rgba(255,255,255,.13);display:grid;place-items:center;font-size:28px;color:#e8ebf1}
+.dialcall{margin-top:18px;height:62px;border-radius:14px;background:#ff8a3d;color:#1a0d03;display:grid;place-items:center;font-size:25px;font-weight:800}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:30px}
+.icons i{aspect-ratio:1;border-radius:34px;box-shadow:inset 0 4px 6px rgba(255,255,255,.4),0 12px 20px rgba(0,0,0,.4)}
+.icons.flat i{border-radius:14px;box-shadow:none;transform:scale(.95)}
+.icons i:nth-child(1){background:linear-gradient(145deg,#6bd38d,#1c9b52)}.icons i:nth-child(2){background:linear-gradient(145deg,#7fd0ff,#2688d8)}.icons i:nth-child(3){background:linear-gradient(145deg,#ffd27a,#e58f21)}.icons i:nth-child(4){background:linear-gradient(145deg,#ff9d9d,#cb4b4b)}
+.wp{height:250px;border-radius:26px;background:linear-gradient(150deg,var(--wa),var(--wb));position:relative;overflow:hidden}
+.wp::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-30px;top:-50px;background:rgba(255,255,255,.18);box-shadow:0 0 80px rgba(255,255,255,.22)}
+.wp span{position:absolute;left:26px;bottom:22px;font-size:30px;font-weight:800}
+.wpbtns{display:flex;gap:14px;margin-top:24px}
+.wpbtns span{padding:12px 24px;border:1px solid rgba(255,255,255,.14);border-radius:99px;font-size:22px;color:#aeb4bf}
+.wpbtns span.on{border-color:#ff8a3d;color:#ff8a3d;background:rgba(255,138,61,.12)}
+.rail{display:flex;gap:14px;margin-top:26px}
+.rail span{font-size:22px;padding:12px 20px;border-radius:99px;border:1px solid rgba(255,255,255,.12);color:#9aa1ad}
+.rail span.on{background:linear-gradient(135deg,#ffc078,#ff6a17);color:#1a0d03;border-color:transparent;font-weight:800}
+
+.qbox{border:1px solid rgba(255,255,255,.12);border-radius:40px;padding:40px;margin-top:30px;background:rgba(255,255,255,.04)}
+.qnum{font-size:22px;letter-spacing:.16em;color:#ffb15c}
+.qtitle{font-size:40px;font-weight:800;margin:14px 0 26px}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.opt{height:84px;border-radius:20px;border:1px solid rgba(255,255,255,.13);display:flex;align-items:center;padding:0 26px;font-size:28px;color:#cdd2db}
+.opt.on{border-color:#ff8a3d;color:#fff;background:rgba(255,122,47,.16)}
+.opt small{font-size:19px;color:#7f8694;margin-left:14px}
+.opt.on small{color:#ffb15c}
+
+.rescard{margin-top:36px;width:780px;height:1120px;border:4px solid rgba(255,150,80,.45);border-radius:40px;padding:64px;background:radial-gradient(700px 500px at 80% 10%,rgba(255,130,50,.28),transparent 65%),linear-gradient(160deg,#191d27,#0d1017)}
+.reskick{font-size:26px;color:#ffb15c;letter-spacing:.12em}
+.resyear{font-size:150px;font-weight:900;line-height:1.1;letter-spacing:-.05em}
+.resrank{font-size:48px;font-weight:800;color:#ff8a3d;margin-bottom:50px}
+.resrow{display:flex;gap:52px}
+.resphone{width:250px;height:350px;border:4px solid rgba(255,255,255,.3);border-radius:42px;display:grid;place-items:center;flex:0 0 auto}
+.resphone div{text-align:center;font-size:82px;font-weight:900;color:#ff8a3d}
+.resphone small{display:block;font-size:24px;color:#fff;letter-spacing:.12em}
+.ResDesc{font-size:34px;line-height:1.7;color:#f3f4f7}
+.ressub{font-size:24px;color:#9aa1ad;margin-top:34px;line-height:1.7}
+.resbtn{margin-top:48px;display:inline-flex;padding:22px 36px;border-radius:18px;background:linear-gradient(135deg,#ffc078,#ff6a17);color:#1a0d03;font-size:30px;font-weight:800}
+.resdisclaimer{font-size:22px;color:#6c7381;margin-top:48px}
+</style></head><body>
+<div class="bg"></div><div class="grid"></div>
+
+<!-- 0 开场 -->
+<div class="scene" id="s0">
+  <div class="kick" data-at="0.05">2010 — 2025 · 一枚装得下青春的胶囊</div>
+  <div class="h1" data-at="0.1">MIUI<br><span>时间胶囊</span></div>
+  <div class="sub" data-at="0.28">横滑时间轴，从 MIUI 1 走到 HyperOS。<br>每一站，都藏着你用过的那个界面。</div>
+  <div class="btn" data-at="0.45">开启时光机 →</div>
+  <div class="line" id="s0line" style="margin-top:40px"></div>
+  <div class="phone" data-at="0.2"><div class="pscr"><div class="pstat"><span>9:41</span><span>●●● ▰</span></div><div class="pico"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+  <div class="note" data-at="0.6">粉丝自制怀旧互动 · <b>非小米官方发布</b></div>
+</div>
+
+<!-- 1 时间轴 -->
+<div class="scene" id="s1">
+  <div class="hd"><div><div class="kick">TIME CAPSULE / 01</div><div class="h2">滑动，回到那一天</div></div><div class="tag">10 个时代 · 10 个小场景</div></div>
+  <div class="vcard">
+    <div class="vyear">2010</div><div class="vver">MIUI 1</div>
+    <div class="vtitle">一切，从论坛开始</div><div class="vtag">每周五的更新，比周末还让人期待。</div>
+    <div class="widget">
+      <div class="wname">复古拨号盘</div><div class="whint">点数字键，拨一通 2010 年的电话</div>
+      <div class="dialnum" id="dialnum">—</div>
+      <div class="dialpad"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>*</span><span>0</span><span>#</span></div>
+      <div class="dialcall" id="dialcall">呼叫</div>
+    </div>
+  </div>
+  <div class="vcard" id="v2014" style="display:none">
+    <div class="vyear">2014</div><div class="vver">MIUI 6</div>
+    <div class="vtitle">扁平化元年</div><div class="vtag">图标平了，心也跟着轻了。</div>
+    <div class="widget"><div class="wname">图标风格</div><div class="whint">拟物 / 扁平，一键穿越</div>
+      <div class="icons" id="iconwrap"><i></i><i></i><i></i><i></i></div>
+      <div class="wpbtns"><span id="iconA">拟物</span><span id="iconB">扁平</span></div>
+    </div>
+  </div>
+  <div class="vcard" id="v2020" style="display:none">
+    <div class="vyear">2020</div><div class="vver">MIUI 12</div>
+    <div class="vtitle">把宇宙装进锁屏</div><div class="vtag">点亮屏幕，是一颗星球的 sunrise。</div>
+    <div class="widget"><div class="wname">超级壁纸</div><div class="whint">换一张壁纸，看看锁屏怎么转起来</div>
+      <div class="wp" id="wp"><span id="wpname">火星橙</span></div>
+      <div class="wpbtns"><span id="wpA">火星橙</span><span id="wpB">极夜蓝</span><span id="wpC">薄荷绿</span></div>
+    </div>
+  </div>
+  <div class="rail"><span>2010</span><span>2014</span><span>2020</span><span>2023</span><span>2026</span></div>
+</div>
+
+<!-- 2 问卷 -->
+<div class="scene" id="s2">
+  <div class="kick">IDENTITY / 02</div>
+  <div class="h2">3 个问题，算出你的米粉等级</div>
+  <div class="qbox" data-at="0.05"><div class="qnum">QUESTION 01</div><div class="qtitle">你最早接触 MIUI 是哪一年？</div><div class="opts"><div class="opt on">2010 <small>元老级</small></div><div class="opt">2012 <small>小米手机一代</small></div><div class="opt">2014 <small>扁平化</small></div><div class="opt">2018 <small>小爱同学</small></div></div></div>
+  <div class="qbox" data-at="0.38"><div class="qnum">QUESTION 02</div><div class="qtitle">你的第一台小米手机是？</div><div class="opts"><div class="opt on">小米手机 1</div><div class="opt">小米 2 / 2S</div><div class="opt">小米 Note</div><div class="opt">小米 5</div></div></div>
+  <div class="qbox" data-at="0.7"><div class="qnum">QUESTION 03</div><div class="qtitle">你最怀念的功能是？</div><div class="opts"><div class="opt on">主题商店</div><div class="opt">云同步</div><div class="opt">应用分身</div><div class="opt">小爱同学</div></div></div>
+</div>
+
+<!-- 3 结果 -->
+<div class="scene" id="s3">
+  <div class="kick" style="margin-bottom:22px">RESULT / 03</div>
+  <div class="rescard">
+    <div class="reskick" data-at="0.03">MIUI · TIME CAPSULE</div>
+    <div class="resyear" data-at="0.08">2010</div>
+    <div class="resrank" data-at="0.16">LV.9 骨灰级 · MIUI 元老</div>
+    <div class="resrow"><div class="resphone" data-at="0.25"><div>16<small>YEARS</small></div></div><div class="ResDesc" data-at="0.32">从论坛时代一路走来，你见过它的第一行代码。</div></div>
+    <div class="ressub" data-at="0.36">起点 2010　·　小米手机 1　·　主题商店</div>
+    <div class="resbtn" data-at="0.34">保存卡片图片 →</div>
+    <div class="resdisclaimer" data-at="0.48">粉丝自制怀旧互动 · 非小米官方发布 · 结果仅供娱乐</div>
+  </div>
+</div>
+
+<script>
+var scenes = [
+  { el: document.getElementById('s0'), start: 0,   end: 28 },
+  { el: document.getElementById('s1'), start: 28,  end: 84 },
+  { el: document.getElementById('s2'), start: 84,  end: 122 },
+  { el: document.getElementById('s3'), start: 122, end: 144 }
+];
+function reveal(el, p) {
+  el.querySelectorAll('[data-at]').forEach(function (n) {
+    var on = p >= parseFloat(n.dataset.at);
+    n.style.opacity = on ? '1' : '0';
+    n.style.transform = on ? 'none' : 'translateY(18px)';
+  });
+}
+window.setFrame = function (i) {
+  scenes.forEach(function (s, idx) {
+    var p = (i - s.start) / (s.end - s.start);
+    var visible = p >= 0 && p <= 1;
+    s.el.style.display = visible ? 'block' : 'none';
+    if (!visible) return;
+    var fi = Math.min(1, p / 0.09), fo = Math.min(1, (1 - p) / 0.09);
+    s.el.style.opacity = Math.max(0, Math.min(fi, fo));
+    s.el.style.transform = 'translateY(' + Math.round((1 - fi) * 36) + 'px)';
+    reveal(s.el, p);
+  });
+  // 开场光线
+  var p0 = Math.max(0, Math.min(1, i / 20));
+  document.getElementById('s0line').style.width = (p0 * 620) + 'px';
+
+  // 时间轴三段
+  var p1 = (i - 28) / 56;
+  var cards = [document.querySelectorAll('.vcard')[0], document.getElementById('v2014'), document.getElementById('v2020')];
+  var rail = document.querySelectorAll('#s1 .rail span');
+  var active = p1 < 0.34 ? 0 : (p1 < 0.68 ? 1 : 2);
+  cards.forEach(function (c, k) { c.style.display = k === active ? 'block' : 'none'; });
+  rail.forEach(function (r, k) { r.classList.toggle('on', k === active); });
+  var local = active === 0 ? p1 / 0.34 : (active === 1 ? (p1 - 0.34) / 0.34 : (p1 - 0.68) / 0.32);
+  if (active === 0) {
+    var digits = ['1','0','0','8','6'];
+    var n = Math.min(5, Math.floor(local * 7));
+    document.getElementById('dialnum').textContent = digits.slice(0, n).join('') || '—';
+    document.getElementById('dialcall').style.background = local > 0.6 ? '#ffd7a8' : '#ff8a3d';
+  } else if (active === 1) {
+    var flat = local > 0.55;
+    document.getElementById('iconwrap').classList.toggle('flat', flat);
+    document.getElementById('iconA').classList.toggle('on', !flat);
+    document.getElementById('iconB').classList.toggle('on', flat);
+  } else {
+    var themes = [['火星橙','#ff8a3d','#3b1200'],['极夜蓝','#4d7cff','#08122f'],['薄荷绿','#3fd0a8','#06251f']];
+    var t = local < 0.36 ? 0 : (local < 0.7 ? 1 : 2);
+    var wp = document.getElementById('wp');
+    wp.style.setProperty('--wa', themes[t][1]); wp.style.setProperty('--wb', themes[t][2]);
+    document.getElementById('wpname').textContent = themes[t][0];
+    ['wpA','wpB','wpC'].forEach(function (id, k) { document.getElementById(id).classList.toggle('on', k === t); });
+  }
+};
+window.setFrame(0);
+</script>
+</body></html>

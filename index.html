@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0d0f14" />
+<title>MIUI 时间胶囊</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="brand-text">MIUI <b>时间胶囊</b></span>
+    </div>
+    <span class="topbar-tag">Vibe Coding 参赛作品</span>
+  </header>
+
+  <main>
+    <!-- 开场 -->
+    <section class="screen screen--intro is-active" id="screen-intro" aria-label="开场">
+      <div class="hero">
+        <div class="hero-halo" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="hero-kicker">2010 — 2025 · 一枚装得下青春的胶囊</div>
+            <h1 class="hero-title">MIUI<br /><span>时间胶囊</span></h1>
+            <p class="hero-desc">横滑时间轴，从 MIUI 1 走到 HyperOS。<br />每一站，都藏着你用过的那个界面。</p>
+            <div class="hero-actions">
+              <button class="btn btn--primary" id="btn-start" type="button">
+                <span>开启时光机</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+              </button>
+              <button class="btn btn--ghost" id="btn-continue" type="button" hidden>继续上次的进度</button>
+            </div>
+            <div class="hero-note">粉丝自制怀旧互动 · 非小米官方发布</div>
+          </div>
+          <div class="hero-phone" aria-hidden="true">
+            <div class="hero-phone__frame">
+              <div class="hero-phone__screen">
+                <div class="hp-status"><span>9:41</span><span>●●● ▰</span></div>
+                <div class="hp-icons">
+                  <span class="hp-ico i1">电话</span><span class="hp-ico i2">短信</span><span class="hp-ico i3">相机</span><span class="hp-ico i4">设置</span>
+                  <span class="hp-ico i5">主题</span><span class="hp-ico i6">天气</span><span class="hp-ico i7">时钟</span><span class="hp-ico i8">日历</span>
+                </div>
+                <div class="hp-dock"><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="hero-phone__shadow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <span>10 个时代节点</span><span class="dot"></span><span>10 个可玩小场景</span><span class="dot"></span><span>1 张米粉身份证</span>
+      </div>
+    </section>
+
+    <!-- 时间轴 -->
+    <section class="screen screen--timeline" id="screen-timeline" aria-label="时间轴">
+      <div class="timeline-head">
+        <div>
+          <div class="section-kicker">TIME CAPSULE / 01</div>
+          <h2 class="section-title">滑动，回到那一天</h2>
+        </div>
+        <button class="btn btn--small btn--ghost" id="btn-quiz-skip" type="button">直接测米粉等级</button>
+      </div>
+
+      <div class="era-track" id="eraTrack" tabindex="0" aria-label="左右滑动切换时代"></div>
+
+      <div class="timeline-foot">
+        <div class="year-rail" id="yearRail" aria-label="时代导航"></div>
+        <div class="track-progress"><div class="track-progress__bar" id="trackProgress"></div></div>
+        <div class="timeline-hint">← 左右滑动 / 拖拽 →</div>
+      </div>
+    </section>
+
+    <!-- 问答 -->
+    <section class="screen screen--quiz" id="screen-quiz" aria-label="米粉问卷">
+      <div class="quiz-head">
+        <div class="section-kicker">IDENTITY / 02</div>
+        <h2 class="section-title">3 个问题，算出你的米粉等级</h2>
+        <p class="section-desc">只在本机保存，不上传、不收集任何个人信息。</p>
+      </div>
+      <div class="quiz-body" id="quizBody"></div>
+      <div class="quiz-actions">
+        <button class="btn btn--ghost" id="btn-quiz-back" type="button">返回时间轴</button>
+        <button class="btn btn--primary" id="btn-quiz-submit" type="button" disabled>生成我的米粉身份证</button>
+      </div>
+    </section>
+
+    <!-- 结果 -->
+    <section class="screen screen--result" id="screen-result" aria-label="米粉身份证">
+      <div class="result-head">
+        <div class="section-kicker">RESULT / 03</div>
+        <h2 class="section-title">你的米粉身份证</h2>
+      </div>
+      <div class="result-layout">
+        <div class="card-preview">
+          <canvas id="resultCanvas" width="750" height="1000" role="img" aria-label="米粉身份分享卡"></canvas>
+          <div class="card-fallback" id="cardFallback" hidden>当前浏览器不支持图片导出，可长按上方卡片保存。</div>
+        </div>
+        <div class="result-side">
+          <div class="result-badge" id="resultBadge">16 年老米粉</div>
+          <p class="result-line" id="resultLine"></p>
+          <div class="result-tags" id="resultTags"></div>
+          <div class="result-actions">
+            <button class="btn btn--primary" id="btn-save" type="button">保存卡片图片</button>
+            <button class="btn btn--ghost" id="btn-copy" type="button">复制分享文案</button>
+            <button class="btn btn--ghost" id="btn-restart" type="button">再玩一次</button>
+          </div>
+          <p class="result-note">粉丝自制怀旧互动 · 非小米官方发布 · 结果仅供娱乐</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
